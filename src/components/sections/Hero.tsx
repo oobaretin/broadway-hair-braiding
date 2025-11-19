@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 export const Hero: React.FC = () => {
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-24">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-48">
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-primary-600 z-10" />
@@ -24,13 +24,13 @@ export const Hero: React.FC = () => {
           className="max-w-4xl mx-auto"
         >
           <h1 className="font-bold text-4xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight">
-            Niki&apos;s African Hair Braiding
-            <span className="block text-primary-200">& Boho Hair Styles</span>
+            Magic Braiding
+            <span className="block text-primary-200">Professional Hair Braiding Services</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Professional African hair braiding and boho hair services in Katy, Texas. 
-            Beautiful, long-lasting braids and trendy boho styles that enhance your natural beauty.
+            Fast, professional, and gentle hair braiding services in Richmond, Texas. 
+            Beautiful, long-lasting braids that enhance your natural beauty. Experience the magic!
           </p>
 
           <div className="flex justify-center">

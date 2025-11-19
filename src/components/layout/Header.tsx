@@ -34,38 +34,38 @@ export const Header: React.FC = () => {
       className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300"
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between h-20 md:h-24">
-          {/* Logo */}
-          <Link href="/" className="flex items-center -space-x-1">
-            <div className="w-28 h-28 md:w-32 md:h-32 rounded-lg overflow-hidden">
-              <img 
-                src="/images/F0D9487E-480C-4C51-B1FE-3DB72B3E6BBA-removebg-preview.png" 
-                alt="Niki's African Hair Braiding Logo" 
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <span className="boldonse-regular text-xl md:text-2xl text-primary-600">
-              Niki&apos;s African Hair Braiding
-            </span>
-          </Link>
+        <div className="flex items-center justify-between h-32 md:h-48">
+          {/* Logo and Navigation Group */}
+          <div className="flex items-center gap-6 md:gap-8">
+            {/* Logo */}
+            <Link href="/" className="flex items-center">
+              <div className="h-32 md:h-48 w-auto">
+                <img 
+                  src="/images/6383B831-AD0A-49E3-87EA-02AD4B1AFB8B-removebg-preview.png" 
+                  alt="Magic Braiding Logo" 
+                  className="h-full w-auto object-contain"
+                />
+              </div>
+            </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={cn(
-                  'font-medium transition-colors duration-200',
-                  pathname === item.href
-                    ? 'text-primary-600'
-                    : 'text-secondary-700 hover:text-primary-600'
-                )}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center space-x-6">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={cn(
+                    'font-medium transition-colors duration-200',
+                    pathname === item.href
+                      ? 'text-primary-600'
+                      : 'text-secondary-700 hover:text-primary-600'
+                  )}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </nav>
+          </div>
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-4">

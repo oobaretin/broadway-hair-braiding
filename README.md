@@ -1,6 +1,6 @@
-# Niki's African Hair Braiding - Professional Hair Braiding Website
+# Magic Braiding - Professional Hair Braiding Website
 
-A modern, professional website for Niki's African Hair Braiding, a hair braiding salon in Katy, Texas. Built with Next.js 14, TypeScript, and Tailwind CSS for optimal performance and user experience.
+A modern, professional website for Magic Braiding, a hair braiding salon in Richmond, Texas. Built with Next.js 14, TypeScript, and Tailwind CSS for optimal performance and user experience.
 
 ## 🚀 Features
 
@@ -65,7 +65,7 @@ src/
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd nikis-african-braiding
+   cd magic-braiding
    ```
 
 2. **Install dependencies**
@@ -96,9 +96,9 @@ npm start
 
 ### Colors
 The color scheme can be customized in `tailwind.config.js`:
-- **Primary**: Purple/pink gradient (braids theme)
-- **Secondary**: Gray scale (neutral)
-- **Accent**: Orange (warm accent)
+- **Primary**: Gold/amber tones (elegant and luxurious)
+- **Secondary**: Black/gray scale (sophisticated neutral)
+- **Accent**: Gold accents (matching primary theme)
 
 ### Content
 - **Services**: Edit `src/lib/data.ts` to modify services, pricing, and descriptions
@@ -202,8 +202,8 @@ For technical support or customization requests, please contact the development 
 
 ## 📄 License
 
-This project is proprietary software created for Niki's African Hair Braiding.
+This project is proprietary software created for Magic Braiding.
 
 ---
 
-**Built with ❤️ for Niki's African Hair Braiding**
+**Built with ❤️ for Magic Braiding**

@@ -3,14 +3,14 @@ import ServiceMinimalList from '@/components/sections/ServiceMinimalList';
 import { Testimonials } from '@/components/sections/Testimonials';
 
 export const metadata: Metadata = {
-  title: 'Services - Niki\'s African Hair Braiding | Professional Hair Braiding in Katy, Texas',
-  description: 'Explore our professional hair braiding services including box braids, goddess braids, cornrows, and faux locs. Expert styling in Katy, Texas.',
-  keywords: 'hair braiding services, box braids, goddess braids, cornrows, faux locs, Katy Texas',
+  title: 'Services - Magic Braiding | Professional Hair Braiding in Richmond, Texas',
+  description: 'Explore our professional hair braiding services including box braids, goddess braids, cornrows, and faux locs. Fast, professional, and gentle styling in Richmond, Texas.',
+  keywords: 'hair braiding services, box braids, goddess braids, cornrows, faux locs, Richmond Texas, knotless braids',
 };
 
 export default function ServicesPage() {
   return (
-    <div className="pt-20">
+    <div className="pt-32 md:pt-48">
       <ServiceMinimalList />
       <Testimonials />
     </div>

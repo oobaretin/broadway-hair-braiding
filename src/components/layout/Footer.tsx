@@ -13,21 +13,18 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center space-x-3 mb-4">
-              <div className="w-20 h-20 rounded-lg overflow-hidden">
+            <Link href="/" className="flex items-center mb-4">
+              <div className="h-24 md:h-32 w-auto">
                 <img 
-                  src="/images/F0D9487E-480C-4C51-B1FE-3DB72B3E6BBA-removebg-preview.png" 
-                  alt="Niki's African Hair Braiding Logo" 
-                  className="w-full h-full object-contain"
+                  src="/images/6383B831-AD0A-49E3-87EA-02AD4B1AFB8B-removebg-preview.png" 
+                  alt="Magic Braiding Logo" 
+                  className="h-full w-auto object-contain"
                 />
               </div>
-              <span className="boldonse-regular text-2xl text-primary-600">
-                Niki&apos;s African Hair Braiding
-              </span>
             </Link>
             <p className="text-secondary-300 mb-6">
-              Transform your look with expert hair braiding services. Professional, 
-              beautiful, and long-lasting braids in Katy, Texas.
+              Transform your look with expert hair braiding services. Fast, professional, 
+              and gentle braiding in Richmond, Texas.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => {
@@ -183,7 +180,7 @@ export const Footer: React.FC = () => {
         {/* Copyright */}
         <div className="mt-12 pt-8 border-t border-secondary-800 text-center">
           <p className="text-secondary-400">
-            © {new Date().getFullYear()} Niki&apos;s African Hair Braiding. All rights reserved.
+            © {new Date().getFullYear()} Magic Braiding. All rights reserved.
           </p>
           <p className="text-secondary-500 text-sm mt-2">
             Designed by{' '}

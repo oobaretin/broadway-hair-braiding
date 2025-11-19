@@ -436,7 +436,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                             className="sr-only"
                           />
                           <div className="flex items-center space-x-4">
-                            <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center p-2">
+                            <div className="w-12 h-12 bg-primary-50 rounded-full flex items-center justify-center p-2">
                               <img 
                                 src="/images/zelle-logo1.png" 
                                 alt="Zelle" 
@@ -447,8 +447,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                               <h4 className="font-bold text-lg text-secondary-900">Zelle</h4>
                               <p className="text-sm text-secondary-600 mt-1">Send to: [Your Zelle Info]</p>
                               <div className="flex items-center mt-2">
-                                <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
-                                <span className="text-xs text-blue-600 font-medium">Bank Transfer</span>
+                                <div className="w-2 h-2 bg-primary-500 rounded-full mr-2"></div>
+                                <span className="text-xs text-primary-600 font-medium">Bank Transfer</span>
                               </div>
                             </div>
                             {watch('paymentMethod') === 'zelle' && (
@@ -472,7 +472,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                             className="sr-only"
                           />
                           <div className="flex items-center space-x-4">
-                            <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center p-2">
+                            <div className="w-12 h-12 bg-primary-50 rounded-full flex items-center justify-center p-2">
                               <img 
                                 src="/images/Screenshot_2025-11-03_at_12.10.13_PM-removebg-preview.png" 
                                 alt="PayPal" 
@@ -483,8 +483,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                               <h4 className="font-bold text-lg text-secondary-900">PayPal</h4>
                               <p className="text-sm text-secondary-600 mt-1">$20 deposit required at booking</p>
                               <div className="flex items-center mt-2">
-                                <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
-                                <span className="text-xs text-blue-600 font-medium">Online Payment</span>
+                                <div className="w-2 h-2 bg-primary-500 rounded-full mr-2"></div>
+                                <span className="text-xs text-primary-600 font-medium">Online Payment</span>
                               </div>
                             </div>
                             {watch('paymentMethod') === 'paypal' && (
