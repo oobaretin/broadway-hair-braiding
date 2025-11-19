@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 export const Hero: React.FC = () => {
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-48">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-52 md:pt-48">
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-primary-600 z-10" />

@@ -14,11 +14,11 @@ export const Footer: React.FC = () => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center mb-4">
-              <div className="h-24 md:h-32 w-auto">
+              <div className="h-40 md:h-32 w-auto min-w-[220px] md:min-w-0">
                 <img 
                   src="/images/6383B831-AD0A-49E3-87EA-02AD4B1AFB8B-removebg-preview.png" 
                   alt="Magic Braiding Logo" 
-                  className="h-full w-auto object-contain"
+                  className="h-full w-full object-contain"
                 />
               </div>
             </Link>

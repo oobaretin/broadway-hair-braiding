@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   return (
-    <div className="pt-32 md:pt-48">
+    <div className="pt-52 md:pt-48">
       <Gallery />
     </div>
   );
