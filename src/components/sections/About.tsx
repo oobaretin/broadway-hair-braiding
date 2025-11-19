@@ -60,7 +60,7 @@ export const About: React.FC = () => {
               We are Professional Braiders with years of experience. Our happiness is 
               the customer happiness. Every appointment is an opportunity to create something 
               beautiful that reflects your unique style and personality, backed by expertise 
-              and genuine care for our clients. Fast, neat, and gentle - that's the Magic Braiding promise.
+              and genuine care for our clients. Fast, neat, and gentle - that&apos;s the Magic Braiding promise.
             </p>
 
             {/* Stats */}
