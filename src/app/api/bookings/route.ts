@@ -1,84 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-
-// For Vercel deployment, use Vercel KV or a database
-// For local development, we'll use a simple in-memory store
-// In production, replace this with Vercel KV, Postgres, or another database
-
-// Types
-interface Booking {
-  id: string;
-  clientName: string;
-  clientEmail: string;
-  clientPhone: string;
-  preferredDate: string;
-  preferredTime: string;
-  serviceId?: string;
-  serviceName?: string;
-  duration?: string;
-  paymentMethod: string;
-  notes?: string;
-  createdAt: string;
-}
-
-interface BookingSlot {
-  date: string;
-  time: string;
-  duration: string;
-}
-
-// Simple in-memory store for development
-// In production, replace with Vercel KV, Postgres, or another database
-let bookingsStore: Booking[] = [];
-
-// Helper function to read bookings
-async function readBookings(): Promise<Booking[]> {
-  // In production, replace this with database/KV calls
-  // For now, using in-memory store
-  return bookingsStore;
-}
-
-// Helper function to write bookings
-async function writeBookings(bookings: Booking[]): Promise<void> {
-  // In production, replace this with database/KV calls
-  bookingsStore = bookings;
-}
-
-// Helper function to check if time slots overlap
-function slotsOverlap(
-  date1: string,
-  time1: string,
-  duration1: string,
-  date2: string,
-  time2: string,
-  duration2: string
-): boolean {
-  if (date1 !== date2) return false;
-
-  const parseTime = (timeStr: string): number => {
-    const [time, period] = timeStr.split(' ');
-    const [hours, minutes] = time.split(':').map(Number);
-    let totalMinutes = hours * 60 + minutes;
-    if (period === 'PM' && hours !== 12) totalMinutes += 12 * 60;
-    if (period === 'AM' && hours === 12) totalMinutes -= 12 * 60;
-    return totalMinutes;
-  };
-
-  const parseDuration = (durationStr: string): number => {
-    // Parse duration like "2-3 hours" or "4-5 hours"
-    const match = durationStr.match(/(\d+)/);
-    if (match) {
-      return parseInt(match[1]) * 60; // Convert to minutes
-    }
-    return 60; // Default 1 hour
-  };
-
-  const start1 = parseTime(time1);
-  const end1 = start1 + parseDuration(duration1);
-  const start2 = parseTime(time2);
-  const end2 = start2 + parseDuration(duration2);
-
-  return start1 < end2 && start2 < end1;
-}
+import { getBookings, createBooking, checkBookingConflict, Booking } from '@/lib/bookingsStore';
 
 // GET - Check availability
 export async function GET(request: NextRequest) {
@@ -88,22 +9,12 @@ export async function GET(request: NextRequest) {
     const time = searchParams.get('time');
     const duration = searchParams.get('duration');
 
-    const bookings = await readBookings();
+    const bookings = await getBookings();
 
     // If checking specific date/time/duration
     if (date && time && duration) {
-      const isAvailable = !bookings.some(booking => 
-        slotsOverlap(
-          booking.preferredDate,
-          booking.preferredTime,
-          booking.duration || '1 hour',
-          date,
-          time,
-          duration
-        )
-      );
-
-      return NextResponse.json({ available: isAvailable });
+      const hasConflict = await checkBookingConflict(date, time, duration);
+      return NextResponse.json({ available: !hasConflict });
     }
 
     // If checking all bookings for a date
@@ -148,18 +59,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const bookings = await readBookings();
-
     // Check for conflicts
-    const hasConflict = bookings.some(booking =>
-      slotsOverlap(
-        booking.preferredDate,
-        booking.preferredTime,
-        booking.duration || '1 hour',
-        preferredDate,
-        preferredTime,
-        duration || '1 hour'
-      )
+    const hasConflict = await checkBookingConflict(
+      preferredDate,
+      preferredTime,
+      duration || '2 hours'
     );
 
     if (hasConflict) {
@@ -179,14 +83,13 @@ export async function POST(request: NextRequest) {
       preferredTime,
       serviceId,
       serviceName,
-      duration: duration || '1 hour',
+      duration: duration || '2 hours',
       paymentMethod,
       notes,
       createdAt: new Date().toISOString(),
     };
 
-    bookings.push(newBooking);
-    await writeBookings(bookings);
+    await createBooking(newBooking);
 
     return NextResponse.json(
       { success: true, booking: newBooking },
