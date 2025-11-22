@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
+
+// For Vercel deployment, use Vercel KV or a database
+// For local development, we'll use a simple in-memory store
+// In production, replace this with Vercel KV, Postgres, or another database
 
 // Types
 interface Booking {
@@ -24,36 +26,21 @@ interface BookingSlot {
   duration: string;
 }
 
-// Helper function to get bookings file path
-const getBookingsFilePath = () => {
-  return path.join(process.cwd(), 'data', 'bookings.json');
-};
+// Simple in-memory store for development
+// In production, replace with Vercel KV, Postgres, or another database
+let bookingsStore: Booking[] = [];
 
 // Helper function to read bookings
 async function readBookings(): Promise<Booking[]> {
-  try {
-    const filePath = getBookingsFilePath();
-    const fileContents = await fs.readFile(filePath, 'utf8');
-    return JSON.parse(fileContents);
-  } catch (error) {
-    // If file doesn't exist, return empty array
-    return [];
-  }
+  // In production, replace this with database/KV calls
+  // For now, using in-memory store
+  return bookingsStore;
 }
 
 // Helper function to write bookings
 async function writeBookings(bookings: Booking[]): Promise<void> {
-  const filePath = getBookingsFilePath();
-  const dir = path.dirname(filePath);
-  
-  // Create directory if it doesn't exist
-  try {
-    await fs.mkdir(dir, { recursive: true });
-  } catch (error) {
-    // Directory might already exist
-  }
-  
-  await fs.writeFile(filePath, JSON.stringify(bookings, null, 2), 'utf8');
+  // In production, replace this with database/KV calls
+  bookingsStore = bookings;
 }
 
 // Helper function to check if time slots overlap

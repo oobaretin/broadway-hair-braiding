@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
 
 interface Booking {
   preferredDate: string;
@@ -8,18 +6,13 @@ interface Booking {
   duration?: string;
 }
 
-const getBookingsFilePath = () => {
-  return path.join(process.cwd(), 'data', 'bookings.json');
-};
+// Simple in-memory store for development
+// In production, replace with Vercel KV, Postgres, or another database
+let bookingsStore: Booking[] = [];
 
 async function readBookings(): Promise<Booking[]> {
-  try {
-    const filePath = getBookingsFilePath();
-    const fileContents = await fs.readFile(filePath, 'utf8');
-    return JSON.parse(fileContents);
-  } catch (error) {
-    return [];
-  }
+  // In production, replace this with database/KV calls
+  return bookingsStore;
 }
 
 function slotsOverlap(
