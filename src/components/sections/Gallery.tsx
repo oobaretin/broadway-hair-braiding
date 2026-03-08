@@ -9,23 +9,26 @@ import {
   EyeIcon 
 } from '@heroicons/react/24/outline';
 
-// Gallery images - hair braiding portfolio
-const galleryImages: Array<{
+// Gallery items - hair braiding portfolio (images and videos)
+const galleryItems: Array<{
   id: number;
   src: string;
   alt: string;
   description: string;
+  type: 'image' | 'video';
 }> = [
-  { id: 1, src: '/images/1970103243606062618.JPG', alt: 'African Hair Braiding', description: 'Beautiful braided style by Niki\'s' },
-  { id: 2, src: '/images/5419616989891138872.PNG', alt: 'Boho Braids', description: 'Elegant boho braids' },
-  { id: 3, src: '/images/609472777752946375.JPG', alt: 'Box Braids', description: 'Classic box braids' },
-  { id: 4, src: '/images/8017609348311597846.JPG', alt: 'Hair Braiding Style', description: 'Professional braiding work' },
-  { id: 5, src: '/images/8170572725844401819.JPG', alt: 'Braided Hairstyle', description: 'Stylish braids by Niki\'s' },
-  { id: 6, src: '/images/824266558986917860.JPG', alt: 'African Braids', description: 'Neat and beautiful braids' },
-  { id: 7, src: '/images/spring-twist-braids.png', alt: 'Spring Twist Braids', description: 'Medium spring twist braids with rich brown tones' },
-  { id: 8, src: '/images/micro-braids-curly.png', alt: 'Micro Braids & Curly Hair', description: 'Micro braids with flowing curly waves' },
-  { id: 9, src: '/images/curly-hair-style.png', alt: 'Defined Curly Hair', description: 'Voluminous, healthy curly hair' },
-  { id: 10, src: '/images/cornrows-box-braids.png', alt: 'Cornrows to Box Braids', description: 'Cornrows transitioning to box braids with curly extensions' },
+  { id: 1, src: '/images/1970103243606062618.JPG', alt: 'African Hair Braiding', description: 'Beautiful braided style by Niki\'s', type: 'image' },
+  { id: 2, src: '/images/5419616989891138872.PNG', alt: 'Boho Braids', description: 'Elegant boho braids', type: 'image' },
+  { id: 3, src: '/images/609472777752946375.JPG', alt: 'Box Braids', description: 'Classic box braids', type: 'image' },
+  { id: 4, src: '/images/8017609348311597846.JPG', alt: 'Hair Braiding Style', description: 'Professional braiding work', type: 'image' },
+  { id: 5, src: '/images/8170572725844401819.JPG', alt: 'Braided Hairstyle', description: 'Stylish braids by Niki\'s', type: 'image' },
+  { id: 6, src: '/images/824266558986917860.JPG', alt: 'African Braids', description: 'Neat and beautiful braids', type: 'image' },
+  { id: 7, src: '/images/spring-twist-braids.png', alt: 'Spring Twist Braids', description: 'Medium spring twist braids with rich brown tones', type: 'image' },
+  { id: 8, src: '/images/micro-braids-curly.png', alt: 'Micro Braids & Curly Hair', description: 'Micro braids with flowing curly waves', type: 'image' },
+  { id: 9, src: '/images/curly-hair-style.png', alt: 'Defined Curly Hair', description: 'Voluminous, healthy curly hair', type: 'image' },
+  { id: 10, src: '/images/cornrows-box-braids.png', alt: 'Cornrows to Box Braids', description: 'Cornrows transitioning to box braids with curly extensions', type: 'image' },
+  { id: 11, src: '/images/niki.jpeg', alt: 'Niki\'s Signature Style', description: 'Micro-braids with voluminous curls by Niki\'s', type: 'image' },
+  { id: 12, src: '/images/2990429058358174400.MP4', alt: 'Braiding Showcase', description: 'Watch our braiding artistry in action', type: 'video' },
 ];
 
 const Gallery: React.FC = () => {
@@ -43,13 +46,13 @@ const Gallery: React.FC = () => {
 
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? galleryImages.length - 1 : prevIndex - 1
+      prevIndex === 0 ? galleryItems.length - 1 : prevIndex - 1
     );
   };
 
   const goToNext = () => {
     setCurrentIndex((prevIndex) => 
-      prevIndex === galleryImages.length - 1 ? 0 : prevIndex + 1
+      prevIndex === galleryItems.length - 1 ? 0 : prevIndex + 1
     );
   };
 
@@ -77,11 +80,11 @@ const Gallery: React.FC = () => {
         </div>
 
         {/* Gallery Grid */}
-        {galleryImages.length > 0 ? (
+        {galleryItems.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {galleryImages.map((image, index) => (
+          {galleryItems.map((item, index) => (
             <motion.div
-              key={image.id}
+              key={item.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -89,11 +92,21 @@ const Gallery: React.FC = () => {
               onClick={() => openLightbox(index)}
             >
               <div className="aspect-square relative">
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
+                {item.type === 'video' ? (
+                  <video
+                    src={item.src}
+                    muted
+                    playsInline
+                    preload="metadata"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                ) : (
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                )}
                 
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
@@ -106,13 +119,13 @@ const Gallery: React.FC = () => {
 
               </div>
 
-              {/* Image Info */}
+              {/* Item Info */}
               <div className="p-4">
                 <h3 className="font-semibold text-secondary-900 mb-1">
-                  {image.alt}
+                  {item.alt}
                 </h3>
                 <p className="text-sm text-secondary-600">
-                  {image.description}
+                  {item.description}
                 </p>
               </div>
             </motion.div>
@@ -160,30 +173,49 @@ const Gallery: React.FC = () => {
                 <ChevronRightIcon className="w-8 h-8 text-white" />
               </button>
 
-              {/* Image Container */}
+              {/* Media Container */}
               <div className="relative w-full h-full flex items-center justify-center">
-                <motion.img
-                  key={currentIndex}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.3 }}
-                  src={galleryImages[currentIndex].src}
-                  alt={galleryImages[currentIndex].alt}
-                  className="max-w-full max-h-full object-contain"
-                />
+                {galleryItems[currentIndex].type === 'video' ? (
+                  <motion.div
+                    key={currentIndex}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-full h-full flex items-center justify-center"
+                  >
+                    <video
+                      src={galleryItems[currentIndex].src}
+                      controls
+                      autoPlay
+                      playsInline
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </motion.div>
+                ) : (
+                  <motion.img
+                    key={currentIndex}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.3 }}
+                    src={galleryItems[currentIndex].src}
+                    alt={galleryItems[currentIndex].alt}
+                    className="max-w-full max-h-full object-contain"
+                  />
+                )}
 
-                {/* Image Info */}
+                {/* Item Info */}
                 <div className="absolute bottom-4 left-4 right-4 bg-black/50 backdrop-blur-sm rounded-lg p-4">
                   <h3 className="text-white text-xl font-semibold mb-1">
-                    {galleryImages[currentIndex].alt}
+                    {galleryItems[currentIndex].alt}
                   </h3>
                   <p className="text-white/80 text-sm">
-                    {galleryImages[currentIndex].description}
+                    {galleryItems[currentIndex].description}
                   </p>
                   <div className="flex items-center justify-end mt-2">
                     <span className="text-white/60 text-sm">
-                      {currentIndex + 1} of {galleryImages.length}
+                      {currentIndex + 1} of {galleryItems.length}
                     </span>
                   </div>
                 </div>
@@ -191,7 +223,7 @@ const Gallery: React.FC = () => {
 
               {/* Thumbnail Navigation */}
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-                {galleryImages.map((_, index) => (
+                {galleryItems.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
