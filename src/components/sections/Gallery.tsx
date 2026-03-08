@@ -26,7 +26,6 @@ const galleryImages: Array<{
   { id: 8, src: '/images/micro-braids-curly.png', alt: 'Micro Braids & Curly Hair', description: 'Micro braids with flowing curly waves' },
   { id: 9, src: '/images/curly-hair-style.png', alt: 'Defined Curly Hair', description: 'Voluminous, healthy curly hair' },
   { id: 10, src: '/images/cornrows-box-braids.png', alt: 'Cornrows to Box Braids', description: 'Cornrows transitioning to box braids with curly extensions' },
-  { id: 11, src: '/images/cornrows-braids-beads.png', alt: 'Cornrows with Beads', description: 'Intricate cornrows and box braids with decorative beads' },
 ];
 
 const Gallery: React.FC = () => {
