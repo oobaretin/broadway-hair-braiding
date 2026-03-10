@@ -21,7 +21,7 @@ export const About: React.FC = () => {
             </h2>
             
             <p className="text-lg text-secondary-600 mb-6 leading-relaxed">
-              Niki&apos;s African hair braiding and boho hair seller is led by Niki, a professional 
+              Niki&apos;s African hair braiding is led by Niki, a professional 
               braider with years of experience, committed to delivering exceptional African hair 
               braiding and boho styles designed to enhance and celebrate your natural beauty. 
               We prioritize quality, speed, and gentleness to ensure every client leaves satisfied and beautiful.
