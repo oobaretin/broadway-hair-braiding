@@ -244,11 +244,6 @@ export const Contact: React.FC = () => {
                   ))}
                 </div>
                 
-                <div className="mt-4 p-3 bg-primary-50 rounded-lg">
-                  <p className="text-primary-700 text-sm font-medium text-center">
-                    Walk-ins are welcome!
-                  </p>
-                </div>
               </CardContent>
             </Card>
 

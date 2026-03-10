@@ -25,7 +25,6 @@ export const Hero: React.FC = () => {
         >
           <h1 className="font-kablammo text-4xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight">
             Niki&apos;s African Hair Braiding
-            <span className="block text-primary-200">African Hair Braiding & Boho Hair</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">

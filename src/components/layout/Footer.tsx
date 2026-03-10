@@ -167,9 +167,6 @@ export const Footer: React.FC = () => {
             ))}
           </div>
           
-          <div className="mt-6 text-center">
-            <p className="text-primary-400 font-medium">Walk-ins are welcome!</p>
-          </div>
         </div>
 
         {/* Copyright */}
