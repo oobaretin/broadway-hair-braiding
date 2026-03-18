@@ -12,6 +12,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/Card';
 import { services } from '@/lib/data';
 import { formatPrice } from '@/lib/utils';
 import { SALON_DATA } from '@/lib/salonData';
+import { PAYPAL_DEPOSIT_LINK } from '@/lib/data';
 
 const bookingSchema = z.object({
   serviceId: z.string().optional(),
@@ -537,7 +538,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                             </div>
                             <div className="flex-1">
                               <h4 className="font-bold text-lg text-secondary-900">Zelle</h4>
-                              <p className="text-sm text-secondary-600 mt-1">Send to: [Your Zelle Info]</p>
+                              <p className="text-sm text-secondary-600 mt-1">Send to: (832) 260-8935</p>
                               <div className="flex items-center mt-2">
                                 <div className="w-2 h-2 bg-primary-500 rounded-full mr-2"></div>
                                 <span className="text-xs text-primary-600 font-medium">Bank Transfer</span>
@@ -575,7 +576,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                             </div>
                             <div className="flex-1">
                               <h4 className="font-bold text-lg text-secondary-900">PayPal</h4>
-                              <p className="text-sm text-secondary-600 mt-1">Pay deposit securely with PayPal</p>
+                              <p className="text-sm text-secondary-600 mt-1">Pay $20 deposit securely with PayPal</p>
                               <div className="flex items-center mt-2 flex-wrap gap-x-3 gap-y-1">
                                 <div className="flex items-center">
                                   <div className="w-2 h-2 bg-[#003087] rounded-full mr-2"></div>
@@ -583,6 +584,17 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                                 </div>
                                 <span className="text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded">$20 deposit required</span>
                               </div>
+                              {watch('paymentMethod') === 'paypal' && (
+                                <a
+                                  href={PAYPAL_DEPOSIT_LINK}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={(e) => e.stopPropagation()}
+                                  className="inline-flex items-center justify-center gap-2 mt-3 px-4 py-2 bg-[#003087] hover:bg-[#002c6f] text-white text-sm font-semibold rounded-lg transition-colors"
+                                >
+                                  Pay $20 Deposit
+                                </a>
+                              )}
                             </div>
                             {watch('paymentMethod') === 'paypal' && (
                               <div className="w-6 h-6 bg-primary-500 rounded-full flex items-center justify-center">

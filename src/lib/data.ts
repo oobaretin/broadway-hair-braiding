@@ -158,3 +158,6 @@ export const contactInfo = {
   location: "Niki's African hair braiding and boho hair seller",
   hours: businessHours,
 };
+
+/** PayPal.Me link for $20 deposit - create at paypal.me if needed */
+export const PAYPAL_DEPOSIT_LINK = 'https://paypal.me/kine05/20';
