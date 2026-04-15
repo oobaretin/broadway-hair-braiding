@@ -1,10 +1,15 @@
-/** Canonical site URL for metadata, sitemap, and Open Graph. Override with NEXT_PUBLIC_SITE_URL when deployed. */
-const rawSiteUrl =
-  typeof process.env.NEXT_PUBLIC_SITE_URL === 'string'
-    ? process.env.NEXT_PUBLIC_SITE_URL.trim()
-    : '';
-export const SITE_URL = (
-  rawSiteUrl.length > 0 ? rawSiteUrl : 'https://broadwayhairbraiding.com'
-).replace(/\/$/, '');
+/** Canonical site URL for metadata, sitemap, and Open Graph. */
+function resolveSiteUrl(): string {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (explicit) return explicit.replace(/\/$/, '');
+
+  // Vercel sets VERCEL_URL (no protocol) on each deployment — good default before a custom domain.
+  const vercel = process.env.VERCEL_URL?.trim();
+  if (vercel) return `https://${vercel.replace(/\/$/, '')}`;
+
+  return 'https://broadwayhairbraiding.com'.replace(/\/$/, '');
+}
+
+export const SITE_URL = resolveSiteUrl();
 
 export const BUSINESS_NAME = 'Broadway Hair Braiding';
