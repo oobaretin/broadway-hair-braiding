@@ -5,7 +5,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
+import { BUSINESS_NAME } from '@/lib/site';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+
+const LOGO_SRC =
+  '/images/image_63d2f18e-deed-42db-ad5f-081e53571042-removebg-preview.png';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -22,40 +26,51 @@ export const Header: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      setIsScrolled(window.scrollY > 12);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300"
+      className={cn(
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        isScrolled
+          ? 'bg-white/90 backdrop-blur-lg shadow-soft border-b border-secondary-200/60'
+          : 'bg-white/80 backdrop-blur-md border-b border-transparent'
+      )}
     >
+      <div className="h-1 bg-gradient-to-r from-primary-800 via-accent-500 to-primary-700" aria-hidden />
       <div className="container-custom">
-        <div className="flex items-center justify-between h-24 md:h-28">
-          {/* Brand and Navigation Group */}
-          <div className="flex items-center gap-4 md:gap-8">
-            <Link href="/" className="flex items-center flex-shrink-0">
-              <img 
-                src="/images/no%20background.png" 
-                alt="Niki's African Hair Braiding" 
-                className="h-20 md:h-24 w-auto object-contain"
+        <div className="flex items-center justify-between h-[5rem] md:h-[5.75rem]">
+          <div className="flex items-center gap-3 md:gap-10 min-w-0">
+            <Link
+              href="/"
+              aria-label={`${BUSINESS_NAME} — Home`}
+              className="flex items-center flex-shrink-0 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 py-1"
+            >
+              <img
+                src={LOGO_SRC}
+                alt=""
+                width={320}
+                height={92}
+                className="h-14 sm:h-16 md:h-20 w-auto max-w-[min(100%,260px)] sm:max-w-[300px] md:max-w-[340px] object-contain object-left"
               />
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-6">
+            <nav className="hidden lg:flex items-center gap-1">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    'font-medium transition-colors duration-200',
+                    'px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200',
                     pathname === item.href
-                      ? 'text-primary-600'
-                      : 'text-secondary-700 hover:text-primary-600'
+                      ? 'bg-primary-50 text-primary-800 shadow-sm'
+                      : 'text-secondary-600 hover:text-primary-800 hover:bg-secondary-50'
                   )}
                 >
                   {item.name}
@@ -64,56 +79,53 @@ export const Header: React.FC = () => {
             </nav>
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center gap-3">
             <Link href="/services">
               <Button
                 variant="outline"
-                className="border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white"
+                size="md"
+                className="border-primary-700 text-primary-800 hover:bg-primary-700 hover:text-white"
               >
                 Book Now
               </Button>
             </Link>
           </div>
 
-          {/* Mobile menu button - 44px min touch target */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-3 -m-1 rounded-lg transition-colors duration-200 text-secondary-700 hover:bg-secondary-100 min-w-[44px] min-h-[44px] flex items-center justify-center"
+            className="lg:hidden p-3 -mr-1 rounded-xl transition-colors duration-200 text-secondary-700 hover:bg-secondary-100 min-w-[44px] min-h-[44px] flex items-center justify-center"
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isOpen}
           >
-            {isOpen ? (
-              <XMarkIcon className="h-6 w-6" />
-            ) : (
-              <Bars3Icon className="h-6 w-6" />
-            )}
+            {isOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-white rounded-lg shadow-lg mt-2">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={cn(
-                    'block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200',
-                    pathname === item.href
-                      ? 'text-primary-600 bg-primary-50'
-                      : 'text-secondary-700 hover:text-primary-600 hover:bg-primary-50'
-                  )}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="px-3 py-2">
-                <Link href="/services" onClick={() => setIsOpen(false)}>
-                  <Button className="w-full">Book Now</Button>
-                </Link>
-              </div>
+          <div className="lg:hidden pb-4 -mt-1">
+            <div className="rounded-2xl border border-secondary-200/80 bg-white shadow-soft overflow-hidden">
+              <nav className="p-2 flex flex-col gap-0.5">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={cn(
+                      'px-4 py-3 rounded-xl text-base font-medium transition-colors duration-200',
+                      pathname === item.href
+                        ? 'bg-primary-50 text-primary-800'
+                        : 'text-secondary-700 hover:bg-secondary-50 hover:text-primary-800'
+                    )}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+                <div className="p-2 pt-3">
+                  <Link href="/services" onClick={() => setIsOpen(false)} className="block">
+                    <Button className="w-full">Book Now</Button>
+                  </Link>
+                </div>
+              </nav>
             </div>
           </div>
         )}

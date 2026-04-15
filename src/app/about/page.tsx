@@ -1,10 +1,12 @@
 import { Metadata } from 'next';
 import { About } from '@/components/sections/About';
+import { BUSINESS_NAME } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: "About Us - Niki's African Hair Braiding | African Braids & Boho Hair in Katy, Texas",
-  description: "Learn about Niki's African hair braiding. Our mission and commitment to exceptional African braids and boho styles in Katy, Texas. Fast, professional, and gentle.",
-  keywords: "about Niki's African hair braiding, boho hair, hair braiding salon, Katy Texas, professional braiding, Niki",
+  title: `About Us - ${BUSINESS_NAME} | Hair Braiding in Katy, Texas`,
+  description: `Learn about ${BUSINESS_NAME}. Professional African braids and protective styles in Katy, Texas—fast, gentle, and client-focused.`,
+  keywords:
+    'about Broadway Hair Braiding, hair braiding salon, Katy Texas, Brescia Lane, professional braiding',
 };
 
 export default function AboutPage() {

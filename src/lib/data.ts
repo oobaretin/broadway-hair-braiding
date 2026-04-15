@@ -103,61 +103,214 @@ export const services: Service[] = [
   },
 ];
 
+/** Excerpts from Google reviews (5★). Negative or non-substantive entries omitted. */
 export const testimonials: Testimonial[] = [
-  { id: '1', name: 'Giana Chavis', service: 'Braids', rating: 5, comment: "I had a great experience at Niki's. She was very professional and understanding. Talented with fast work getting the job done. Everything turned out perfect just how I wanted it. I couldn't thank Niki enough for helping me with my artistic hair style. I will be back thanks Niki!!!!", date: '2024-10-15' },
-  { id: '2', name: 'Keane Clarke', service: 'Braids', rating: 5, comment: "After my first appointment, I knew I had to return. Niki is amazing. She understood how to braid my hair, hiding my flaws. I'm skeptical about trying new hairstylists, but Niki did an amazing job. After a month and 2 weeks, my hair still looked great. I returned and she ate it up. GREAT Job Niki. I'll keep coming.", date: '2024-06-15' },
-  { id: '3', name: 'Hilda Iyasele', service: 'Braids', rating: 5, comment: "I moved down here last year and met Niki. I started making my hair and my daughter's with Niki for over a year now. She makes very neat braids and the braids are not painful, which is why my daughter loves making her hair with her.", date: '2024-03-15' },
-  { id: '4', name: 'Seun Matthias', service: 'Braids', rating: 5, comment: "Wonderful stylist with the best touch. Her braids are very neat, painless and just well done.", date: '2024-10-15' },
-  { id: '5', name: 'Isabel Ajibare', service: 'Braids', rating: 5, comment: "Nikki is absolutely amazing. I am stuck with her because I love the way she makes my hair.", date: '2024-10-15' },
-  { id: '6', name: 'Princess Roberts', service: 'Boho Braids', rating: 5, comment: "I brought my daughter to get bohemian braids. They came out so perfect. She was fast, the area was clean and very nice. Will definitely go back again.", date: '2023-03-15' },
-  { id: '7', name: 'G Taylor', service: 'Crochet', rating: 5, comment: "Niki has been doing my crochet hair for a while now. She's a very nice and polite lady. Niki does an excellent job and she's very fast. I will continue to go to her. Thanks Niki!", date: '2024-04-15' },
-  { id: '8', name: 'karo A.', service: 'Braids', rating: 5, comment: "My braids came out amazing, and I will be back to try out other braided hairstyles! Her service was spectacular and she offers reasonable prices for great work. I will definitely recommend others to get their hair braided here.", date: '2024-03-15' },
-  { id: '9', name: 'Theresa S', service: 'Boho Braids', rating: 5, comment: "She did an amazing job on my hair. I got boho braids for the first time, and they came out really nice. They were not painful at all, and they were a reasonable price. My mom got cornrows and they came out really nice too.", date: '2024-03-15' },
-  { id: '10', name: 'Tiffany Collins', service: 'Braids', rating: 5, comment: "Not only is Niki a fast braider, but she's also very detailed. Every time I get my hair braided, I get so many compliments. My braids last for a long time, and she offers retouching appointments. I highly recommend Niki for any types of braid styles.", date: '2023-03-15' },
-  { id: '11', name: 'Ramata Traore', service: 'Braids', rating: 5, comment: "I recommend this place to anyone looking for professional and quick service! Niki's was super nice and fast. Her braiding technique is neat. I have been looking for a braid salon since moving to Houston and happy to have found Niki's. She was on time and ready to start as soon as I walked in. I love this place and I recommend to anyone!", date: '2023-03-15' },
-  { id: '12', name: 'Ciara Everson', service: 'Braids', rating: 5, comment: "Amazing customer service. Extremely lightweight and light handed. The service was very fast. Will highly recommend 10 out of 10. Plus the prices are reasonable and fair.", date: '2025-03-07' },
-  { id: '13', name: 'Bola Akinola', service: 'Braids', rating: 5, comment: "My stylist is pleasant and does great, neat work! She also always fits me in last minute which I appreciate because not too many stylists allow same day appointments.", date: '2025-03-01' },
-  { id: '14', name: 'Pam Zee', service: 'Braids', rating: 5, comment: "Best Stylist Ever. Nikki is amazing, prompt and efficient. I'm always eager to try new hairstyles, because Nikki brings it each time. Book her immediately, you will never go anywhere else.", date: '2023-03-15' },
-  { id: '15', name: 'Eni Egbe', service: 'Knotless Braids', rating: 5, comment: "She was very pleasant and did my hair in great timing—4 hours for small/medium knotless braids (collarbone length). They look very neat and it wasn't painful. I'll definitely be back again.", date: '2023-03-15' },
+  {
+    id: 'chrishuna-craft',
+    name: 'Chrishuna Craft',
+    service: 'French curl braids',
+    rating: 5,
+    comment:
+      'She did an amazing job on my French curl braids! At an affordable price too—she is my new regular hair stylist.',
+    date: '2025-12-15',
+  },
+  {
+    id: 'carmen-johnson',
+    name: 'Carmen Johnson',
+    service: 'Braids',
+    rating: 5,
+    comment:
+      'Excellent place to get your hair braided. I did not want my hair too tight like at another shop—as she braided she checked in to be sure I was comfortable.',
+    date: '2023-04-10',
+  },
+  {
+    id: 'nadiyah-eddington',
+    name: 'NaDiyah Eddington',
+    service: 'Braids',
+    rating: 5,
+    comment:
+      'Mariam is so sweet and accommodating. I love her hours because they work around my schedule. My hair looks absolutely beautiful—I am definitely coming back with my two little ones.',
+    date: '2025-05-08',
+  },
+  {
+    id: 'amber-brown',
+    name: 'Amber Brown',
+    service: 'Braids',
+    rating: 5,
+    comment:
+      'My first time getting my hair done here and my visit was awesome. Great customer service and mutual communication. I will be back.',
+    date: '2024-04-20',
+  },
+  {
+    id: 'crystal-poe',
+    name: 'Crystal Poe',
+    service: 'Braids',
+    rating: 5,
+    comment:
+      'I love my hair—and I am not even a braid girl—but I found my person. Miriam is the best braider ever.',
+    date: '2024-03-12',
+  },
+  {
+    id: 'nikki-nikki',
+    name: 'Nikki Nikki',
+    service: 'Braids',
+    rating: 5,
+    comment:
+      'VERY professional, fast, neat, and good conversation. The space is super clean and set up like a real salon. She made sure I was comfortable—water and snacks for clients.',
+    date: '2025-03-22',
+  },
+  {
+    id: 'senia-bychoice',
+    name: 'Senia ByChoice',
+    service: 'Braids',
+    rating: 5,
+    comment:
+      'Nothing but the best experiences here. Miriam is very professional and amazing at what she does. My braids are always super neat and last a long time—money well spent.',
+    date: '2024-02-14',
+  },
+  {
+    id: 'alyssa-jones',
+    name: 'Alyssa Jones',
+    service: 'Braids',
+    rating: 5,
+    comment:
+      'Miriam is punctual, professional, and efficient. She squeezed me in the same day and did an amazing job. I left feeling so confident—you have a loyal customer in me.',
+    date: '2024-05-30',
+  },
+  {
+    id: 'ms-a',
+    name: 'Ms. A',
+    service: 'Braids',
+    rating: 5,
+    comment:
+      'Miriam is a hidden diamond—truly an artist. The quality is exceptional and very neat, and she has a sweet, kind attitude toward customers.',
+    date: '2022-06-18',
+  },
+  {
+    id: 'patricia-cook',
+    name: 'Patricia Cook',
+    service: 'Bora braids',
+    rating: 5,
+    comment:
+      'They took me last minute and were so professional. I felt relaxed and welcomed. I love love love my Bora braids!',
+    date: '2025-06-20',
+  },
+  {
+    id: 'precious-obukwelu',
+    name: 'Precious Obukwelu',
+    service: 'Boho knotless braids',
+    rating: 5,
+    comment:
+      'The stylist did a beautiful job on my boho knotless braids. 10/10 would recommend—their work is very neat and you get what you pay for. Worth it!',
+    date: '2024-01-08',
+  },
+  {
+    id: 'courtney-reed',
+    name: 'Courtney Reed',
+    service: 'Braids',
+    rating: 5,
+    comment:
+      'I have been going to Mariam for 12 years and I always leave happy. She does my hair neat and beautiful—I only trust her with my braids.',
+    date: '2025-02-02',
+  },
+  {
+    id: 'canice-allen',
+    name: 'Canice Allen',
+    service: 'Braids',
+    rating: 5,
+    comment:
+      'Broadway Hair Braiding is so awesome! Reasonable prices and immaculate service. She is fast and great with kids—including very patient with special needs kids.',
+    date: '2020-08-14',
+  },
+  {
+    id: 'chris-reviews',
+    name: 'Chris',
+    service: 'Knotless braids',
+    rating: 5,
+    comment:
+      'I was blown away! I got exactly what I was promised—neat braids, perfect parts, perfect length. Sweet, friendly, and personable.',
+    date: '2022-09-05',
+  },
+  {
+    id: 'popit4ash',
+    name: 'Popit4ash',
+    service: 'Braids',
+    rating: 5,
+    comment:
+      'Trying someone new is scary—do not be afraid. Terrific results and you will leave very happy. Impeccable work; no fear of losing edges or braids slipping out.',
+    date: '2023-07-11',
+  },
+  {
+    id: 'princess-gbadamosi',
+    name: 'Princess Gbadamosi',
+    service: 'Braids',
+    rating: 5,
+    comment:
+      'Highly recommend Broadway Hair Braiding! My braids are beautiful and neat, prices are great—book your appointment ASAP.',
+    date: '2024-03-28',
+  },
+  {
+    id: 'quai-burnside',
+    name: 'Quai Burnside',
+    service: 'Small box braids',
+    rating: 5,
+    comment:
+      'I LOVE my hair! I called yesterday and got an appointment today at 7am for small box braids. Best braider ever—so nice and neat. Super satisfied.',
+    date: '2022-04-25',
+  },
+  {
+    id: 'terra-shaw',
+    name: 'Terra Shaw',
+    service: 'Braids',
+    rating: 5,
+    comment:
+      'The best braider in Katy, Texas, hands down. After my big chop she has been the only braider in my head—I do not regret it one bit.',
+    date: '2022-11-03',
+  },
+  {
+    id: 'nadine-smith',
+    name: 'Nadine Smith',
+    service: 'Braids',
+    rating: 5,
+    comment:
+      'I love coming to Mariam—my hair always comes out beautiful and I enjoy the warm hospitality. It feels like going to your auntie’s house.',
+    date: '2022-07-19',
+  },
+  {
+    id: 'hugo-perez',
+    name: 'Hugo Perez',
+    service: 'Braids',
+    rating: 5,
+    comment:
+      'I highly recommend this place. I called several places before and the service was not satisfying—Broadway gave great customer service and the ladies are magnificent.',
+    date: '2023-05-16',
+  },
 ];
 
 export const galleryImages: GalleryImage[] = [];
 
+const openClose = { open: '7:00 AM', close: '10:00 PM' };
+
 export const businessHours: BusinessHours[] = [
-  { day: 'Monday', open: '9:00 AM', close: '7:00 PM' },
-  { day: 'Tuesday', open: '9:00 AM', close: '5:00 PM' },
-  { day: 'Wednesday', open: '9:00 AM', close: '7:00 PM' },
-  { day: 'Thursday', open: '9:00 AM', close: '7:00 PM' },
-  { day: 'Friday', open: '8:00 AM', close: '9:00 PM' },
-  { day: 'Saturday', open: '8:00 AM', close: '9:00 PM' },
-  { day: 'Sunday', open: '9:00 AM', close: '7:00 PM' },
+  { day: 'Monday', ...openClose },
+  { day: 'Tuesday', ...openClose },
+  { day: 'Wednesday', ...openClose },
+  { day: 'Thursday', ...openClose },
+  { day: 'Friday', ...openClose },
+  { day: 'Saturday', ...openClose },
+  { day: 'Sunday', ...openClose },
 ];
 
-export const socialLinks: SocialLink[] = [
-  {
-    platform: 'Instagram',
-    url: 'https://instagram.com/nikisafricanhair',
-    icon: 'instagram',
-  },
-  {
-    platform: 'Nextdoor',
-    url: 'https://nextdoor.com/business/nikis-african-hair-braiding',
-    icon: 'nextdoor',
-  },
-  {
-    platform: 'Facebook',
-    url: 'https://facebook.com/nikisafricanhair',
-    icon: 'facebook',
-  },
-];
+/** Add Instagram, Facebook, etc. when you have official links. */
+export const socialLinks: SocialLink[] = [];
 
 export const contactInfo = {
-  phone: '+12814083091',
-  email: 'info@nikisafricanhair.com',
-  address: '5303 S Mason Rd, Katy, TX 77450',
-  location: "Niki's African hair braiding and boho hair seller",
+  phone: '+17134830211',
+  email: 'info@broadwayhairbraiding.com',
+  address: '18831 Brescia Ln, Katy, TX 77449',
+  location: 'Professional hair braiding in Katy, Texas',
   hours: businessHours,
 };
 
-/** PayPal.Me link for $20 deposit - create at paypal.me if needed */
+/** Update with your PayPal.Me or deposit link before taking paid bookings. */
 export const PAYPAL_DEPOSIT_LINK = 'https://paypal.me/kine05/20';

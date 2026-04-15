@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
-import Image from 'next/image';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -9,10 +8,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { XMarkIcon, CalendarIcon, ClockIcon } from '@heroicons/react/24/outline';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardHeader } from '@/components/ui/Card';
-import { services } from '@/lib/data';
+import { services, contactInfo, PAYPAL_DEPOSIT_LINK } from '@/lib/data';
 import { formatPrice } from '@/lib/utils';
 import { SALON_DATA } from '@/lib/salonData';
-import { PAYPAL_DEPOSIT_LINK } from '@/lib/data';
 
 const bookingSchema = z.object({
   serviceId: z.string().optional(),
@@ -45,8 +43,6 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [availableSlots, setAvailableSlots] = useState<string[]>([]);
-  const [loadingAvailability, setLoadingAvailability] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<string>('');
 
   const {
     register,
@@ -91,99 +87,61 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
   const serviceDuration = getServiceDuration();
 
-  // Fetch availability when date changes
-  const fetchAvailability = useCallback(async (date: string) => {
-    if (!date || !serviceDuration) {
-      setAvailableSlots([]);
-      return;
-    }
-
-    setLoadingAvailability(true);
-    try {
-      const response = await fetch(
-        `/api/bookings/availability?date=${date}&duration=${serviceDuration}`
-      );
-      const result = await response.json();
-      
-      if (response.ok) {
-        setAvailableSlots(result.availableSlots || []);
-      } else {
-        console.error('Error fetching availability:', result.error);
-        setAvailableSlots(timeSlots); // Fallback to all slots
-      }
-    } catch (error) {
-      console.error('Error fetching availability:', error);
-      setAvailableSlots(timeSlots); // Fallback to all slots
-    } finally {
-      setLoadingAvailability(false);
-    }
-  }, [serviceDuration]);
-
-  // Watch for date changes
   const watchedDate = watch('preferredDate');
   useEffect(() => {
-    if (watchedDate && watchedDate !== selectedDate && serviceDuration) {
-      setSelectedDate(watchedDate);
-      fetchAvailability(watchedDate);
+    if (watchedDate) {
+      setAvailableSlots(timeSlots);
+    } else {
+      setAvailableSlots([]);
     }
-  }, [watchedDate, selectedDate, serviceDuration, fetchAvailability]);
+  }, [watchedDate]);
 
   const onSubmit = async (data: BookingFormData) => {
     setIsSubmitting(true);
-    
+
     try {
-      // Prepare booking data
-      const bookingData = {
-        clientName: data.clientName,
-        clientEmail: data.clientEmail,
-        clientPhone: data.clientPhone,
-        preferredDate: data.preferredDate,
-        preferredTime: data.preferredTime,
-        serviceId: data.serviceId,
-        serviceName: isServiceMenuService 
-          ? selectedService 
-          : selectedServiceData?.name,
-        duration: serviceDuration || '2 hours',
-        paymentMethod: data.paymentMethod,
-        notes: data.notes,
-      };
+      const serviceName = isServiceMenuService
+        ? selectedService
+        : selectedServiceData?.name || data.serviceId || 'Not specified';
 
-      // Submit booking to API
-      const response = await fetch('/api/bookings', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(bookingData),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        if (response.status === 409) {
-          // Conflict - time slot already booked
-          alert(result.error || 'This time slot is no longer available. Please select another time.');
-          // Refresh availability
-          if (data.preferredDate) {
-            await fetchAvailability(data.preferredDate);
-          }
-          return;
-        }
-        throw new Error(result.error || 'Failed to book appointment');
+      const bodyLines = [
+        'New booking request from the website',
+        '',
+        `Name: ${data.clientName}`,
+        `Email: ${data.clientEmail}`,
+        `Phone: ${data.clientPhone}`,
+        `Preferred date: ${data.preferredDate}`,
+        `Preferred time: ${data.preferredTime}`,
+        `Service: ${serviceName}`,
+        `Estimated duration: ${serviceDuration || '—'}`,
+        `Payment preference: ${data.paymentMethod}`,
+      ];
+      if (data.notes?.trim()) {
+        bodyLines.push('', `Notes: ${data.notes.trim()}`);
       }
-      
-      // Reset form and close modal
+
+      const subject = encodeURIComponent(
+        `Booking request — ${data.preferredDate} ${data.preferredTime}`
+      );
+      const body = encodeURIComponent(bodyLines.join('\n'));
+      const mailto = `mailto:${contactInfo.email}?subject=${subject}&body=${body}`;
+
+      window.location.href = mailto;
+
       reset();
-      setSelectedDate('');
       setAvailableSlots([]);
       onClose();
-      
-      // Show success message
-      alert('Appointment booked successfully! We will contact you to confirm.');
-      
+
+      alert(
+        'Your email app should open with your request. If it does not, please call or text us to book.'
+      );
     } catch (error) {
       console.error('Booking error:', error);
-      alert(error instanceof Error ? error.message : 'There was an error booking your appointment. Please try again.');
+      alert(
+        error instanceof Error
+          ? error.message
+          : 'Something went wrong. Please call or text us to book.'
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -366,7 +324,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                           type="tel"
                           {...register('clientPhone')}
                           className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 hover:border-primary-300"
-                          placeholder="(281) 555-0123"
+                          placeholder="(713) 555-0123"
                         />
                         {errors.clientPhone && (
                           <p className="text-red-600 text-sm mt-1">{errors.clientPhone.message}</p>
@@ -405,16 +363,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                         {errors.preferredDate && (
                           <p className="text-red-600 text-sm mt-1">{errors.preferredDate.message}</p>
                         )}
-                        {loadingAvailability && watchedDate && (
-                          <p className="text-primary-600 text-sm mt-2">Checking availability...</p>
-                        )}
                       </div>
                       
                       <div>
                         <label className="block text-sm font-medium text-secondary-700 mb-2">
                           Preferred Time *
                         </label>
-                        {watchedDate && availableSlots.length === 0 && !loadingAvailability && (
+                        {watchedDate && availableSlots.length === 0 && (
                           <div className="mb-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
                             <p className="text-yellow-800 text-sm">
                               ⚠️ No available slots for this date. Please select another date.
@@ -529,12 +484,11 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                             className="sr-only"
                           />
                           <div className="flex items-center space-x-4">
-                            <div className="w-12 h-12 bg-primary-50 rounded-full flex items-center justify-center p-2">
-                              <img 
-                                src="/images/zelle-logo1.png" 
-                                alt="Zelle" 
-                                className="w-full h-full object-contain"
-                              />
+                            <div
+                              className="w-12 h-12 shrink-0 rounded-full flex items-center justify-center bg-purple-100 border border-purple-200"
+                              aria-hidden
+                            >
+                              <span className="text-purple-900 font-bold text-xs">Zelle</span>
                             </div>
                             <div className="flex-1">
                               <h4 className="font-bold text-lg text-secondary-900">Zelle</h4>
@@ -565,14 +519,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                             className="sr-only"
                           />
                           <div className="flex items-center space-x-4">
-                            <div className="w-12 h-12 flex items-center justify-center shrink-0">
-                              <Image
-                                src="/images/paypal-logo.png"
-                                alt="PayPal"
-                                width={48}
-                                height={48}
-                                className="object-contain"
-                              />
+                            <div
+                              className="w-12 h-12 shrink-0 rounded-full flex items-center justify-center bg-[#003087] px-1"
+                              aria-hidden
+                            >
+                              <span className="text-white font-bold text-[0.65rem] leading-tight text-center">
+                                PayPal
+                              </span>
                             </div>
                             <div className="flex-1">
                               <h4 className="font-bold text-lg text-secondary-900">PayPal</h4>

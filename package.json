@@ -1,5 +1,5 @@
 {
-  "name": "magic-braiding",
+  "name": "broadway-hair-braiding",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -13,7 +13,6 @@
     "@headlessui/react": "^1.7.0",
     "@heroicons/react": "^2.0.0",
     "@hookform/resolvers": "^3.3.0",
-    "@supabase/supabase-js": "^2.84.0",
     "@types/node": "^20.0.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",

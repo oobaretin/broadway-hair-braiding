@@ -1,35 +1,26 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  XMarkIcon, 
-  ChevronLeftIcon, 
+import {
+  XMarkIcon,
+  ChevronLeftIcon,
   ChevronRightIcon,
-  EyeIcon 
+  EyeIcon,
+  PhotoIcon,
 } from '@heroicons/react/24/outline';
 
-// Gallery items - hair braiding portfolio (images and videos)
-const galleryItems: Array<{
+export type GalleryItem = {
   id: number;
   src: string;
   alt: string;
   description: string;
   type: 'image' | 'video';
-}> = [
-  { id: 1, src: '/images/1970103243606062618.JPG', alt: 'African Hair Braiding', description: 'Beautiful braided style by Niki\'s', type: 'image' },
-  { id: 2, src: '/images/5419616989891138872.PNG', alt: 'Boho Braids', description: 'Elegant boho braids', type: 'image' },
-  { id: 3, src: '/images/609472777752946375.JPG', alt: 'Box Braids', description: 'Classic box braids', type: 'image' },
-  { id: 4, src: '/images/8017609348311597846.JPG', alt: 'Hair Braiding Style', description: 'Professional braiding work', type: 'image' },
-  { id: 5, src: '/images/8170572725844401819.JPG', alt: 'Braided Hairstyle', description: 'Stylish braids by Niki\'s', type: 'image' },
-  { id: 6, src: '/images/824266558986917860.JPG', alt: 'African Braids', description: 'Neat and beautiful braids', type: 'image' },
-  { id: 7, src: '/images/spring-twist-braids.png', alt: 'Spring Twist Braids', description: 'Medium spring twist braids with rich brown tones', type: 'image' },
-  { id: 8, src: '/images/micro-braids-curly.png', alt: 'Micro Braids & Curly Hair', description: 'Micro braids with flowing curly waves', type: 'image' },
-  { id: 9, src: '/images/curly-hair-style.png', alt: 'Defined Curly Hair', description: 'Voluminous, healthy curly hair', type: 'image' },
-  { id: 10, src: '/images/cornrows-box-braids.png', alt: 'Cornrows to Box Braids', description: 'Cornrows transitioning to box braids with curly extensions', type: 'image' },
-  { id: 11, src: '/images/niki.jpeg', alt: 'Niki\'s Signature Style', description: 'Micro-braids with voluminous curls by Niki\'s', type: 'image' },
-  { id: 12, src: '/images/2990429058358174400.MP4', alt: 'Braiding Showcase', description: 'Watch our braiding artistry in action', type: 'video' },
-];
+};
+
+/** Add your portfolio media here (paths under `public/images/`). */
+const galleryItems: GalleryItem[] = [];
 
 const Gallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
@@ -45,13 +36,15 @@ const Gallery: React.FC = () => {
   };
 
   const goToPrevious = () => {
-    setCurrentIndex((prevIndex) => 
+    if (galleryItems.length === 0) return;
+    setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? galleryItems.length - 1 : prevIndex - 1
     );
   };
 
   const goToNext = () => {
-    setCurrentIndex((prevIndex) => 
+    if (galleryItems.length === 0) return;
+    setCurrentIndex((prevIndex) =>
       prevIndex === galleryItems.length - 1 ? 0 : prevIndex + 1
     );
   };
@@ -66,82 +59,96 @@ const Gallery: React.FC = () => {
     }
   };
 
+  const hasItems = galleryItems.length > 0;
+
   return (
     <section className="section-padding bg-white">
       <div className="container-custom">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="font-bold text-4xl md:text-5xl text-secondary-900 mb-4">
-            Our Gallery
+        <div className="text-center mb-14 md:mb-16 max-w-3xl mx-auto">
+          <p className="text-primary-700 font-semibold text-sm uppercase tracking-[0.2em] mb-3">
+            Portfolio
+          </p>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-secondary-900 mb-5 text-balance">
+            Our gallery
           </h2>
-          <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-            Explore our stunning portfolio of hair braiding work. Click on any image to view it in full size.
+          <p className="text-lg text-secondary-600 leading-relaxed">
+            Photos and videos of our work will appear here soon.
           </p>
         </div>
 
-        {/* Gallery Grid */}
-        {galleryItems.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {galleryItems.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-              onClick={() => openLightbox(index)}
-            >
-              <div className="aspect-square relative">
-                {item.type === 'video' ? (
-                  <video
-                    src={item.src}
-                    muted
-                    playsInline
-                    preload="metadata"
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                ) : (
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                )}
-                
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="bg-white/90 rounded-full p-3">
-                      <EyeIcon className="w-6 h-6 text-secondary-900" />
+        {hasItems ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {galleryItems.map((item, index) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group relative overflow-hidden rounded-2xl shadow-soft border border-secondary-200/80 hover:shadow-lift transition-all duration-300 cursor-pointer"
+                onClick={() => openLightbox(index)}
+              >
+                <div className="aspect-square relative">
+                  {item.type === 'video' ? (
+                    <video
+                      src={item.src}
+                      muted
+                      playsInline
+                      preload="metadata"
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  ) : (
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  )}
+
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="bg-white/90 rounded-full p-3">
+                        <EyeIcon className="w-6 h-6 text-secondary-900" />
+                      </div>
                     </div>
                   </div>
                 </div>
 
-              </div>
-
-              {/* Item Info */}
-              <div className="p-4">
-                <h3 className="font-semibold text-secondary-900 mb-1">
-                  {item.alt}
-                </h3>
-                <p className="text-sm text-secondary-600">
-                  {item.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                <div className="p-4">
+                  <h3 className="font-semibold text-secondary-900 mb-1">{item.alt}</h3>
+                  <p className="text-sm text-secondary-600">{item.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         ) : (
-          <div className="text-center py-16">
-            <p className="text-xl text-secondary-600 mb-4">
-              Gallery coming soon! Check back later to see our beautiful work.
+          <div className="surface-card max-w-xl mx-auto p-10 md:p-12 text-center border-dashed border-2 border-secondary-300 bg-secondary-50/30">
+            <PhotoIcon className="w-14 h-14 mx-auto text-secondary-400 mb-5" aria-hidden />
+            <h3 className="font-display font-semibold text-xl text-secondary-900 mb-3">
+              Gallery coming soon
+            </h3>
+            <p className="text-secondary-600 leading-relaxed mb-6">
+              We&apos;re preparing fresh photos of our work for this site. Visit us on social or
+              call to see styles in the meantime.
             </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link
+                href="/services"
+                className="inline-flex justify-center rounded-xl bg-primary-700 text-white px-6 py-3 text-sm font-semibold hover:bg-primary-800 transition-colors"
+              >
+                View services
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex justify-center rounded-xl border-2 border-primary-700 text-primary-800 px-6 py-3 text-sm font-semibold hover:bg-primary-700 hover:text-white transition-colors"
+              >
+                Contact us
+              </Link>
+            </div>
           </div>
         )}
 
-        {/* Lightbox Modal */}
         <AnimatePresence>
-          {selectedImage !== null && (
+          {hasItems && selectedImage !== null && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -150,30 +157,33 @@ const Gallery: React.FC = () => {
               onKeyDown={handleKeyDown}
               tabIndex={0}
             >
-              {/* Close Button */}
               <button
+                type="button"
                 onClick={closeLightbox}
                 className="absolute top-4 right-4 z-10 bg-white/10 hover:bg-white/20 rounded-full p-3 transition-colors duration-200"
+                aria-label="Close gallery"
               >
                 <XMarkIcon className="w-6 h-6 text-white" />
               </button>
 
-              {/* Navigation Arrows */}
               <button
+                type="button"
                 onClick={goToPrevious}
                 className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 rounded-full p-3 transition-colors duration-200"
+                aria-label="Previous image"
               >
                 <ChevronLeftIcon className="w-8 h-8 text-white" />
               </button>
 
               <button
+                type="button"
                 onClick={goToNext}
                 className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 rounded-full p-3 transition-colors duration-200"
+                aria-label="Next image"
               >
                 <ChevronRightIcon className="w-8 h-8 text-white" />
               </button>
 
-              {/* Media Container */}
               <div className="relative w-full h-full flex items-center justify-center">
                 {galleryItems[currentIndex].type === 'video' ? (
                   <motion.div
@@ -205,14 +215,11 @@ const Gallery: React.FC = () => {
                   />
                 )}
 
-                {/* Item Info */}
                 <div className="absolute bottom-4 left-4 right-4 bg-black/50 backdrop-blur-sm rounded-lg p-4">
                   <h3 className="text-white text-xl font-semibold mb-1">
                     {galleryItems[currentIndex].alt}
                   </h3>
-                  <p className="text-white/80 text-sm">
-                    {galleryItems[currentIndex].description}
-                  </p>
+                  <p className="text-white/80 text-sm">{galleryItems[currentIndex].description}</p>
                   <div className="flex items-center justify-end mt-2">
                     <span className="text-white/60 text-sm">
                       {currentIndex + 1} of {galleryItems.length}
@@ -221,17 +228,18 @@ const Gallery: React.FC = () => {
                 </div>
               </div>
 
-              {/* Thumbnail Navigation */}
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
                 {galleryItems.map((_, index) => (
                   <button
                     key={index}
+                    type="button"
                     onClick={() => setCurrentIndex(index)}
                     className={`w-3 h-3 rounded-full transition-all duration-200 ${
                       index === currentIndex
                         ? 'bg-primary-600 scale-125'
                         : 'bg-white/40 hover:bg-white/60'
                     }`}
+                    aria-label={`Go to image ${index + 1}`}
                   />
                 ))}
               </div>
@@ -239,27 +247,26 @@ const Gallery: React.FC = () => {
           )}
         </AnimatePresence>
 
-        {/* Call to Action */}
         <div className="text-center mt-16">
-          <h3 className="text-2xl font-bold text-secondary-900 mb-4">
-            Ready to Transform Your Look?
+          <h3 className="font-display text-xl md:text-2xl font-semibold text-secondary-900 mb-4">
+            Ready for your next style?
           </h3>
-          <p className="text-secondary-600 mb-6 max-w-2xl mx-auto">
-            Book your appointment today and let us create a beautiful, long-lasting style just for you.
+          <p className="text-secondary-600 mb-6 max-w-2xl mx-auto leading-relaxed">
+            Book your appointment and let us create a beautiful, long-lasting look for you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+            <Link
               href="/services"
-              className="bg-primary-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-primary-700 transition-colors duration-200"
+              className="inline-flex justify-center rounded-xl bg-primary-700 text-white px-8 py-3 text-sm font-semibold hover:bg-primary-800 transition-colors"
             >
-              View Our Services
-            </a>
-            <a
+              View our services
+            </Link>
+            <Link
               href="/contact"
-              className="border-2 border-primary-600 text-primary-600 px-8 py-3 rounded-lg font-medium hover:bg-primary-600 hover:text-white transition-colors duration-200"
+              className="inline-flex justify-center rounded-xl border-2 border-primary-700 text-primary-800 px-8 py-3 text-sm font-semibold hover:bg-primary-700 hover:text-white transition-colors"
             >
-              Contact Us
-            </a>
+              Contact us
+            </Link>
           </div>
         </div>
       </div>
