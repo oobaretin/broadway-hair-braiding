@@ -491,6 +491,3 @@ export const contactInfo = {
   location: 'Hair salon on Campbellton Rd, Atlanta, Georgia',
   hours: businessHours,
 };
-
-/** Update with your PayPal.Me or deposit link before taking paid bookings. */
-export const PAYPAL_DEPOSIT_LINK = 'https://paypal.me/kine05/20';

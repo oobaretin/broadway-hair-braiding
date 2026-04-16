@@ -8,8 +8,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { XMarkIcon, CalendarIcon, ClockIcon } from '@heroicons/react/24/outline';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardHeader } from '@/components/ui/Card';
-import { services, contactInfo, PAYPAL_DEPOSIT_LINK } from '@/lib/data';
-import { formatPrice } from '@/lib/utils';
+import { services, contactInfo } from '@/lib/data';
+import { formatPrice, formatPhoneNumber } from '@/lib/utils';
 import { SALON_DATA } from '@/lib/salonData';
 
 const bookingSchema = z.object({
@@ -324,7 +324,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                           type="tel"
                           {...register('clientPhone')}
                           className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 hover:border-primary-300"
-                          placeholder="(404) 555-0123"
+                            placeholder={formatPhoneNumber(contactInfo.phone)}
                         />
                         {errors.clientPhone && (
                           <p className="text-red-600 text-sm mt-1">{errors.clientPhone.message}</p>
@@ -485,72 +485,32 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                           />
                           <div className="flex items-center space-x-4">
                             <div
-                              className="w-12 h-12 shrink-0 rounded-full flex items-center justify-center bg-purple-100 border border-purple-200"
+                              className="shrink-0 h-14 w-[6.25rem] sm:w-28 rounded-xl bg-white border border-[#d6bcfa]/80 flex items-center justify-center px-2.5 shadow-sm"
                               aria-hidden
                             >
-                              <span className="text-purple-900 font-bold text-xs">Zelle</span>
+                              <img
+                                src="/images/zelle-logo.png"
+                                alt=""
+                                width={160}
+                                height={48}
+                                className="h-8 w-full max-w-[6.5rem] sm:max-w-[7.5rem] object-contain object-center"
+                              />
                             </div>
-                            <div className="flex-1">
+                            <div className="flex-1 min-w-0">
                               <h4 className="font-bold text-lg text-secondary-900">Zelle</h4>
-                              <p className="text-sm text-secondary-600 mt-1">Send to: (832) 260-8935</p>
+                              <p className="text-sm text-secondary-600 mt-1">
+                                Send to:{' '}
+                                <span className="font-medium text-secondary-800">
+                                  {formatPhoneNumber(contactInfo.phone)}
+                                </span>
+                              </p>
                               <div className="flex items-center mt-2">
                                 <div className="w-2 h-2 bg-primary-500 rounded-full mr-2"></div>
-                                <span className="text-xs text-primary-600 font-medium">Bank Transfer</span>
+                                <span className="text-xs text-primary-600 font-medium">Bank transfer</span>
                               </div>
                             </div>
                             {watch('paymentMethod') === 'zelle' && (
-                              <div className="w-6 h-6 bg-primary-500 rounded-full flex items-center justify-center">
-                                <div className="w-2 h-2 bg-white rounded-full"></div>
-                              </div>
-                            )}
-                          </div>
-                        </label>
-
-                        {/* PayPal Option */}
-                        <label className={`relative cursor-pointer rounded-xl border-2 p-5 transition-all duration-300 transform hover:scale-[1.02] ${
-                          watch('paymentMethod') === 'paypal'
-                            ? 'border-primary-500 bg-gradient-to-r from-primary-50 to-primary-100 shadow-lg'
-                            : 'border-secondary-200 hover:border-primary-300 hover:shadow-md bg-white'
-                        }`}>
-                          <input
-                            type="radio"
-                            value="paypal"
-                            {...register('paymentMethod')}
-                            className="sr-only"
-                          />
-                          <div className="flex items-center space-x-4">
-                            <div
-                              className="w-12 h-12 shrink-0 rounded-full flex items-center justify-center bg-[#003087] px-1"
-                              aria-hidden
-                            >
-                              <span className="text-white font-bold text-[0.65rem] leading-tight text-center">
-                                PayPal
-                              </span>
-                            </div>
-                            <div className="flex-1">
-                              <h4 className="font-bold text-lg text-secondary-900">PayPal</h4>
-                              <p className="text-sm text-secondary-600 mt-1">Pay $20 deposit securely with PayPal</p>
-                              <div className="flex items-center mt-2 flex-wrap gap-x-3 gap-y-1">
-                                <div className="flex items-center">
-                                  <div className="w-2 h-2 bg-[#003087] rounded-full mr-2"></div>
-                                  <span className="text-xs text-[#003087] font-medium">Secure Online Payment</span>
-                                </div>
-                                <span className="text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded">$20 deposit required</span>
-                              </div>
-                              {watch('paymentMethod') === 'paypal' && (
-                                <a
-                                  href={PAYPAL_DEPOSIT_LINK}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  onClick={(e) => e.stopPropagation()}
-                                  className="inline-flex items-center justify-center gap-2 mt-3 px-4 py-2 bg-[#003087] hover:bg-[#002c6f] text-white text-sm font-semibold rounded-lg transition-colors"
-                                >
-                                  Pay $20 Deposit
-                                </a>
-                              )}
-                            </div>
-                            {watch('paymentMethod') === 'paypal' && (
-                              <div className="w-6 h-6 bg-primary-500 rounded-full flex items-center justify-center">
+                              <div className="w-6 h-6 bg-primary-500 rounded-full flex items-center justify-center shrink-0">
                                 <div className="w-2 h-2 bg-white rounded-full"></div>
                               </div>
                             )}
