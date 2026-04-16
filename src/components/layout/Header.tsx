@@ -43,19 +43,19 @@ export const Header: React.FC = () => {
     >
       <div className="h-1 bg-gradient-to-r from-primary-800 via-accent-500 to-primary-700" aria-hidden />
       <div className="container-custom">
-        <div className="flex items-center justify-between min-h-[5.75rem] md:min-h-[7rem] py-2 md:py-3">
-          <div className="flex items-center gap-3 md:gap-10 min-w-0">
+        <div className="flex items-center justify-between min-h-[6.25rem] md:min-h-[7rem] py-2 md:py-3 gap-2">
+          <div className="flex items-center gap-3 md:gap-10 min-w-0 flex-1">
             <Link
               href="/"
               aria-label="Home"
-              className="flex items-center flex-shrink-0 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 py-0.5"
+              className="flex items-center min-w-0 max-w-full rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 py-0.5"
             >
               <img
                 src={LOGO_SRC}
                 alt=""
                 width={400}
                 height={240}
-                className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto max-w-[min(100%,18rem)] sm:max-w-[22rem] md:max-w-[26rem] lg:max-w-[28rem] object-contain object-left"
+                className="h-[5.25rem] sm:h-20 md:h-24 lg:h-28 w-auto max-w-[calc(100vw-4.25rem)] sm:max-w-[22rem] md:max-w-[26rem] lg:max-w-[28rem] object-contain object-left"
               />
             </Link>
 

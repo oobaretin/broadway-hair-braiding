@@ -9,7 +9,7 @@ import { formatPhoneNumber } from '@/lib/utils';
 
 export const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-[min(100vh,56rem)] flex items-center overflow-hidden pt-[6.5rem] md:pt-[8rem] lg:pt-[8.5rem] pb-16 md:pb-24">
+    <section className="relative min-h-[min(100vh,56rem)] flex items-center overflow-hidden pt-[7rem] md:pt-[8rem] lg:pt-[8.5rem] pb-16 md:pb-24">
       <div className="absolute inset-0 z-0">
         <div
           className="absolute inset-0 bg-gradient-to-br from-primary-950 via-primary-900 to-primary-950"
