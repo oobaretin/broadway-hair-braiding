@@ -43,7 +43,7 @@ export const Header: React.FC = () => {
     >
       <div className="h-1 bg-gradient-to-r from-primary-800 via-accent-500 to-primary-700" aria-hidden />
       <div className="container-custom">
-        <div className="flex items-center justify-between min-h-[6.25rem] md:min-h-[7rem] py-2 md:py-3 gap-2">
+        <div className="flex items-center justify-between min-h-[6.75rem] md:min-h-[7rem] py-2 md:py-3 gap-2">
           <div className="flex items-center gap-3 md:gap-10 min-w-0 flex-1">
             <Link
               href="/"
@@ -55,7 +55,7 @@ export const Header: React.FC = () => {
                 alt=""
                 width={400}
                 height={240}
-                className="h-[5.25rem] sm:h-20 md:h-24 lg:h-28 w-auto max-w-[calc(100vw-4.25rem)] sm:max-w-[22rem] md:max-w-[26rem] lg:max-w-[28rem] object-contain object-left"
+                className="h-[6.5rem] md:h-24 lg:h-28 w-auto max-w-[calc(100vw-3.5rem)] md:max-w-[26rem] lg:max-w-[28rem] object-contain object-left"
               />
             </Link>
 
