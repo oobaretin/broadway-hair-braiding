@@ -44,7 +44,7 @@ export const WhyChooseUs: React.FC = () => {
           className="max-w-3xl mx-auto text-center mb-14 md:mb-16"
         >
           <p className="text-primary-700 font-semibold text-sm uppercase tracking-[0.2em] mb-3">
-            The Broadway difference
+            The Maya difference
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-secondary-900 mb-5 text-balance">
             Why clients trust us with their hair

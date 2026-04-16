@@ -24,7 +24,7 @@ export const Footer: React.FC = () => {
               {BUSINESS_NAME}
             </Link>
             <p className="text-secondary-300 text-sm leading-relaxed max-w-sm">
-              Professional hair braiding in Katy, Texas. Fast, gentle service and beautiful
+              Professional hair braiding in Atlanta, Georgia. Fast, gentle service and beautiful
               protective styles.
             </p>
             <div className="flex flex-wrap gap-3">

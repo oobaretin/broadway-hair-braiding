@@ -324,7 +324,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                           type="tel"
                           {...register('clientPhone')}
                           className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 hover:border-primary-300"
-                          placeholder="(713) 555-0123"
+                          placeholder="(404) 555-0123"
                         />
                         {errors.clientPhone && (
                           <p className="text-red-600 text-sm mt-1">{errors.clientPhone.message}</p>

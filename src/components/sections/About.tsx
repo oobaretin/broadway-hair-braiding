@@ -21,14 +21,14 @@ export const About: React.FC = () => {
               Our story
             </p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-secondary-900 mb-8 text-balance">
-              About Broadway Hair Braiding
+              About Maya African Hair Braiding
             </h2>
 
             <div className="space-y-6 text-secondary-600 text-lg leading-relaxed">
               <p>
-                Broadway Hair Braiding is a Katy salon focused on exceptional African hair braiding
-                and protective styles. We combine skilled technique with a gentle touch so every
-                client leaves confident and cared for.
+                Maya African Hair Braiding is an Atlanta hair salon on Campbellton Rd SW focused on
+                exceptional African hair braiding and protective styles. We combine skilled technique
+                with a gentle touch so every client leaves confident and cared for.
               </p>
               <p>
                 Your satisfaction is our priority. Each visit is a chance to create something

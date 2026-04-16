@@ -9,7 +9,7 @@ import { formatPhoneNumber } from '@/lib/utils';
 
 export const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-[min(100vh,56rem)] flex items-center overflow-hidden pt-[5.75rem] md:pt-[6.25rem] pb-16 md:pb-24">
+    <section className="relative min-h-[min(100vh,56rem)] flex items-center overflow-hidden pt-[6.5rem] md:pt-[8rem] lg:pt-[8.5rem] pb-16 md:pb-24">
       <div className="absolute inset-0 z-0">
         <div
           className="absolute inset-0 bg-gradient-to-br from-primary-950 via-primary-900 to-primary-950"
@@ -36,7 +36,7 @@ export const Hero: React.FC = () => {
           >
             <p className="inline-flex items-center gap-2 text-accent-200/95 text-sm font-semibold uppercase tracking-[0.2em] mb-5">
               <span className="h-px w-8 bg-accent-400/80 hidden sm:block" aria-hidden />
-              Katy, Texas
+              Atlanta, Georgia
             </p>
 
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-7xl text-white mb-6 leading-[1.1] text-balance">
@@ -44,8 +44,8 @@ export const Hero: React.FC = () => {
             </h1>
 
             <p className="text-lg md:text-xl text-white/85 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed">
-              Broadway Hair Braiding — fast, professional, and gentle. Protective styles and
-              beautiful braids for every occasion.
+              Maya African Hair Braiding brings you fast, professional service with a gentle touch—
+              expert protective styles and stunning braids for every occasion.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-stretch sm:items-center">
@@ -88,14 +88,19 @@ export const Hero: React.FC = () => {
                   <dd className="text-white/70 text-xs sm:text-sm mt-1">Clients</dd>
                 </div>
                 <div className="text-center sm:text-left">
-                  <dt className="sr-only">Rating</dt>
-                  <dd className="text-2xl sm:text-3xl font-display font-bold text-accent-300">5★</dd>
-                  <dd className="text-white/70 text-xs sm:text-sm mt-1">Rating</dd>
+                  <dt className="sr-only">Google rating</dt>
+                  <dd className="text-2xl sm:text-3xl font-display font-bold text-accent-300">4.6</dd>
+                  <dd className="text-white/70 text-xs sm:text-sm mt-1">Google (57)</dd>
                 </div>
               </dl>
               <p className="mt-8 text-sm text-white/75 leading-relaxed border-t border-white/15 pt-6">
-                Open daily <span className="text-white font-medium">7 AM – 10 PM</span> — walk-ins
-                welcome when available; booking recommended.
+                Open Monday–Sunday with evening hours until{' '}
+                <span className="text-white font-medium">8 PM</span> — walk-ins when available;
+                booking recommended. Full weekly hours on{' '}
+                <Link href="/contact" className="text-accent-200 underline-offset-2 hover:underline">
+                  Contact
+                </Link>
+                .
               </p>
             </div>
           </motion.div>

@@ -5,11 +5,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
-import { BUSINESS_NAME } from '@/lib/site';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
-const LOGO_SRC =
-  '/images/image_63d2f18e-deed-42db-ad5f-081e53571042-removebg-preview.png';
+const LOGO_SRC = '/images/maya-logo.png';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -45,19 +43,19 @@ export const Header: React.FC = () => {
     >
       <div className="h-1 bg-gradient-to-r from-primary-800 via-accent-500 to-primary-700" aria-hidden />
       <div className="container-custom">
-        <div className="flex items-center justify-between h-[5rem] md:h-[5.75rem]">
+        <div className="flex items-center justify-between min-h-[5.75rem] md:min-h-[7rem] py-2 md:py-3">
           <div className="flex items-center gap-3 md:gap-10 min-w-0">
             <Link
               href="/"
-              aria-label={`${BUSINESS_NAME} — Home`}
-              className="flex items-center flex-shrink-0 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 py-1"
+              aria-label="Home"
+              className="flex items-center flex-shrink-0 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 py-0.5"
             >
               <img
                 src={LOGO_SRC}
                 alt=""
-                width={320}
-                height={92}
-                className="h-14 sm:h-16 md:h-20 w-auto max-w-[min(100%,260px)] sm:max-w-[300px] md:max-w-[340px] object-contain object-left"
+                width={400}
+                height={240}
+                className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto max-w-[min(100%,18rem)] sm:max-w-[22rem] md:max-w-[26rem] lg:max-w-[28rem] object-contain object-left"
               />
             </Link>
 

@@ -15,14 +15,14 @@ export const viewport: Viewport = {
 
 const inter = Inter({ subsets: ['latin'] });
 
-const title = `${BUSINESS_NAME} - Professional Hair Braiding in Katy, Texas`;
-const description = `${BUSINESS_NAME} in Katy, Texas. Expert African braids, protective styles, and gentle, professional service. Book your appointment today.`;
+const title = `${BUSINESS_NAME} - Hair Braiding Salon in Atlanta, Georgia`;
+const description = `${BUSINESS_NAME} on Campbellton Rd SW, Atlanta. Expert African braids, protective styles, and professional salon service. Rated 4.6 on Google. Book your appointment today.`;
 
 export const metadata: Metadata = {
   title,
   description,
   keywords:
-    'hair braiding, African braids, Katy Texas, Brescia Lane, protective styles, box braids, cornrows, goddess braids, boho braids, Broadway Hair Braiding',
+    'hair braiding, African braids, Atlanta Georgia, Campbellton Road, hair salon, protective styles, box braids, cornrows, goddess braids, Maya African Hair Braiding',
   authors: [{ name: BUSINESS_NAME }],
   creator: BUSINESS_NAME,
   publisher: BUSINESS_NAME,

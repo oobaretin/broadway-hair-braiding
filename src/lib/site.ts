@@ -7,9 +7,9 @@ function resolveSiteUrl(): string {
   const vercel = process.env.VERCEL_URL?.trim();
   if (vercel) return `https://${vercel.replace(/\/$/, '')}`;
 
-  return 'https://broadwayhairbraiding.com'.replace(/\/$/, '');
+  return 'https://mayaafricanhairbraiding.com'.replace(/\/$/, '');
 }
 
 export const SITE_URL = resolveSiteUrl();
 
-export const BUSINESS_NAME = 'Broadway Hair Braiding';
+export const BUSINESS_NAME = 'Maya African Hair Braiding';

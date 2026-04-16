@@ -51,7 +51,7 @@ export const Testimonials: React.FC = () => {
                     ))}
                   </div>
 
-                  <blockquote className="text-secondary-700 mb-6 leading-relaxed text-[0.95rem] md:text-base">
+                  <blockquote className="text-secondary-700 mb-6 leading-relaxed text-[0.95rem] md:text-base whitespace-pre-line">
                     &ldquo;{testimonial.comment}&rdquo;
                   </blockquote>
 
